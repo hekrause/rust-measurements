@@ -1,9 +1,5 @@
 ---
 language: rust
-script:
-- "./_test/check-exercises.sh"
-- "./bin/fetch-configlet"
-- "./bin/configlet lint ."
 sudo: false
 rust:
   - stable
@@ -16,7 +12,6 @@ matrix:
   include:
     - rust: nightly
       env: BENCHMARK=1
-      script: "./_test/check-exercises.sh"
   allow_failures:
     - rust: nightly
     - rust: beta
