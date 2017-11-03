@@ -29,3 +29,5 @@ impl Measurement for Aperture {
         "f"
     }
 }
+
+implement_measurement! { Aperture }
