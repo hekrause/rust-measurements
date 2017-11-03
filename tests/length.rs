@@ -4,7 +4,8 @@ use measurements::*;
 
 #[test]
 fn create() -> () {
-    let meter = Length::from_metres(1.0);
-    let millimeter = meter.as_millimeters();
-    assert_eq!(1000.0, millimeter);
+    let meter1 = Length::from_metres(2.0);
+    let meter2 = Length::from_metres(5.0);
+
+    let meter = meter1 * meter2;
 }
