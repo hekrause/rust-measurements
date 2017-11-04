@@ -28,7 +28,7 @@ pub const METER_FURLONG_FACTOR: f64 = 1000.0 / (25.4 * 12.0 * 3.0 * 220.0);
 /// Number of miles in a meter
 pub const METER_MILE_FACTOR: f64 = 1000.0 / (25.4 * 12.0 * 3.0 * 1760.0);
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub struct Length {
     meters: f64,
 }
@@ -260,17 +260,15 @@ impl Measurement for Length {
 
     fn get_appropriate_units(&self) -> (&'static str, f64) {
         // Smallest to largest
-        let list = [
-            ("pm", 1e-12),
-            ("nm", 1e-9),
-            ("\u{00B5}m", 1e-6),
-            ("mm", 1e-3),
-            ("cm", 1e-2),
-            ("m", 1e0),
-            ("km", 1e3),
-            ("thousand km", 1e6),
-            ("million km", 1e9),
-        ];
+        let list = [("pm", 1e-12),
+                    ("nm", 1e-9),
+                    ("\u{00B5}m", 1e-6),
+                    ("mm", 1e-3),
+                    ("cm", 1e-2),
+                    ("m", 1e0),
+                    ("km", 1e3),
+                    ("thousand km", 1e6),
+                    ("million km", 1e9)];
         self.pick_appropriate_units(&list)
     }
 }

@@ -1,7 +1,7 @@
 
 use super::measurement::*;
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub struct Aperture {
     aperture_number: f64,
 }
@@ -12,7 +12,7 @@ impl Aperture {
     }
 
     pub fn calc_nth_aperture_number(nth: u64) -> Self {
-        Aperture { aperture_number: (nth-1) as f64 * 2.0_f64.sqrt() }
+        Aperture { aperture_number: (nth - 1) as f64 * 2.0_f64.sqrt() }
     }
 }
 
