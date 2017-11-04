@@ -1,20 +1,9 @@
 
 use super::measurement::*;
-use serde::ser::{Serialize, Serializer, SerializeStruct};
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub struct Aperture {
     aperture_number: f64,
-}
-
-impl Serialize for Aperture {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where S: Serializer
-    {
-        let mut state = serializer.serialize_struct("Aperture", 1)?;
-        state.serialize_field("aperture_number", &self.aperture_number)?;
-        state.end()
-    }
 }
 
 impl Aperture {
