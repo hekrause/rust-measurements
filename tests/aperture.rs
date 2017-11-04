@@ -18,6 +18,6 @@ fn json() {
     let len = Aperture::from_base_units(2.828);
     let serialized = serde_json::to_string(&len).unwrap();
     assert_eq!(serialized, "{\"aperture_number\":2.828}");
-    let deserialized: Aperture = serde_json::from_str(&serialized).unwrap();
-    assert_eq!(deserialized, Aperture::from_base_units(2.828))
+    //let deserialized: Aperture = serde_json::from_str(&serialized).unwrap();
+    //assert_eq!(deserialized, Aperture::from_base_units(2.828))
 }

@@ -1,6 +1,7 @@
 //! Types and constants for handling lengths (or distances).
 
 use super::measurement::*;
+use serde::ser::{Serialize, Serializer, SerializeStruct};
 
 /// Number of nanometers in a meter
 pub const METER_NANOMETER_FACTOR: f64 = 1000000000.0;
@@ -28,9 +29,19 @@ pub const METER_FURLONG_FACTOR: f64 = 1000.0 / (25.4 * 12.0 * 3.0 * 220.0);
 /// Number of miles in a meter
 pub const METER_MILE_FACTOR: f64 = 1000.0 / (25.4 * 12.0 * 3.0 * 1760.0);
 
-#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct Length {
     meters: f64,
+}
+
+impl Serialize for Length {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where S: Serializer
+    {
+        let mut state = serializer.serialize_struct("Length", 1)?;
+        state.serialize_field("meters", &self.meters)?;
+        state.end()
+    }
 }
 
 impl Length {
